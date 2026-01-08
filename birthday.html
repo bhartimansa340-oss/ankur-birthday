@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Ankur</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{
+background:linear-gradient(135deg,#ff4e50,#f9d423);
+height:100vh;
+overflow:hidden;
+color:#fff;
+}
+section{
+height:100vh;
+display:none;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+.active{display:flex}
+h1{font-size:2.2em;margin-bottom:15px}
+button{
+padding:12px 25px;
+margin:10px;
+border:none;
+border-radius:30px;
+font-size:1em;
+cursor:pointer;
+}
+.yes{background:#00ff9c;color:#000}
+.no{background:#ff1744;color:#fff}
+.card{
+background:rgba(255,255,255,0.15);
+padding:25px;
+border-radius:20px;
+max-width:350px;
+backdrop-filter:blur(10px);
+animation:pop 1s ease;
+}
+@keyframes pop{
+from{transform:scale(0.8);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+.countdown{
+display:flex;
+gap:15px;
+font-size:1.4em;
+margin-top:20px;
+}
+.box{
+background:rgba(0,0,0,0.3);
+padding:15px;
+border-radius:15px;
+min-width:70px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- COUNTDOWN -->
+<section id="screen1" class="active">
+<h1>🎉 Ankur's Birthday 🎉</h1>
+<div class="countdown">
+<div class="box"><span id="d"></span><br>Days</div>
+<div class="box"><span id="h"></span><br>Hours</div>
+<div class="box"><span id="m"></span><br>Min</div>
+<div class="box"><span id="s"></span><br>Sec</div>
+</div>
+</section>
+
+<!-- QUESTION 1 -->
+<section id="screen2">
+<h1>Do you know someone<br>who cares for you a lot? 💖</h1>
+<div>
+<button class="yes" onclick="next(3)">Yes</button>
+<button class="no" onclick="next(3)">No</button>
+</div>
+</section>
+
+<!-- QUESTION 2 -->
+<section id="screen3">
+<h1>Will you always<br>keep smiling for me? 😊</h1>
+<div>
+<button class="yes" onclick="next(4)">Yes</button>
+<button class="no" onclick="next(4)">No</button>
+</div>
+</section>
+
+<!-- QUESTION 3 -->
+<section id="screen4">
+<h1>Can I stay<br>by your side forever? 💫</h1>
+<div>
+<button class="yes" onclick="next(5)">Yes</button>
+<button class="no" onclick="next(5)">No</button>
+</div>
+</section>
+
+<!-- MESSAGE -->
+<section id="screen5">
+<div class="card">
+<h1>💌 For You, Ankur</h1>
+<p style="margin-top:15px;line-height:1.6">
+always stay happy , i like to see you smiling .....<br><br>
+You don’t even know how special you are to me.<br><br>
+Every moment with you feels beautiful, and my heart feels safe with you.<br><br>
+This little surprise is just a small way of saying:<br><br>
+<b>I care for you more than words can ever explain</b>
+</p>
+</div>
+</section>
+
+<script>
+const target = new Date("2026-01-11T00:00:00").getTime();
+
+setInterval(()=>{
+const now = new Date().getTime();
+const diff = target - now;
+
+if(diff<=0){
+document.getElementById("screen1").classList.remove("active");
+document.getElementById("screen2").classList.add("active");
+return;
+}
+
+document.getElementById("d").innerText = Math.floor(diff/(1000*60*60*24));
+document.getElementById("h").innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+document.getElementById("m").innerText = Math.floor((diff%(1000*60*60))/(1000*60));
+document.getElementById("s").innerText = Math.floor((diff%(1000*60))/1000);
+},1000);
+
+function next(n){
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById("screen"+n).classList.add("active");
+}
+</script>
+
+</body>
+</html>
